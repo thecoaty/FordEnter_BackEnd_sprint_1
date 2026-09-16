@@ -71,6 +71,7 @@ internal abstract class ContaBancaria
                     {
                         Console.WriteLine($"Emprestimo de {valorNumerico} realizado com sucesso e já está disponivel em seu saldo!");
                         Saldo += valorNumerico;
+                        EmprestimoBase -= valorNumerico;
                         Thread.Sleep(3000);
                         Console.Clear();
                         return;
