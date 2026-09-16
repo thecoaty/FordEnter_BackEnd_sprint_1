@@ -24,24 +24,37 @@ internal class Menu
     public void CriarUsuario(){
         Console.Write("Olá usuario qual o seu nome? ");
         string usuario = Console.ReadLine()!;
-        var novoUsuario = new Usuario(usuario);
-        var numeroAleatorio = new Random();
-        int numeroDaConta = numeroAleatorio.Next(1, 100);
+        if(usuario.Length > 0){
+            var numeroAleatorio = new Random();
+            int numeroDaConta = numeroAleatorio.Next(1, 100);
+            var novoUsuario = new Usuario(usuario);
 
-        var conta1 = new ContaCorrente(novoUsuario, numeroDaConta);
 
-        Console.Clear();
+            var contaCorrente = new ContaCorrente(novoUsuario, numeroDaConta);
+            var contaPoupanca = new ContaPoupanca(novoUsuario, numeroDaConta);
+            var contaEmpresarial = new ContaEmpresarial(novoUsuario, numeroDaConta);
+            ExibirMenu(novoUsuario);
+        }
+        else{
+            Console.WriteLine("Precisa ter um nome de usuario válido.");
+            Thread.Sleep(2000);
 
-        ExibirTituloDaOpcao($"Olá {usuario}, digite a opção desejada:");
-        ExibirMenu(conta1);
+            Console.Clear();
+            CriarUsuario();
+        }
+
     }
 
-    public void ExibirMenu(ContaCorrente conta){
+    public void ExibirMenu(Usuario usuario){
+        Console.Clear();
+        ExibirTituloDaOpcao($"Olá {usuario.Nome}, digite a opção desejada:");
+       
 
         Console.WriteLine("1. Acessar sua Conta Corrente");
         Console.WriteLine("2. Acessar sua Conta Poupanca");
         Console.WriteLine("3. Acessar sua Conta Empresarial");
         Console.WriteLine("-1. Sair");
+        Console.Write("Digite a sua opção: ");
         try
         {
             do
@@ -51,7 +64,15 @@ internal class Menu
                 switch (opcao)
                 {
                     case 1:
-                        new AcessarContaCorrente().Executar(conta);
+                        new AcessarConta().Executar(usuario.Contas[0]);
+                        return;
+                    case 2:
+                        new AcessarConta().Executar(usuario.Contas[1]);
+                        return;
+                    case 3:
+                        new AcessarConta().Executar(usuario.Contas[2]);
+                        return;
+                    case -1:
                         return;
                     default:
                         Console.WriteLine("Opção inválida, insira uma opção valída");
@@ -62,7 +83,7 @@ internal class Menu
         catch (Exception ex) {
             Console.Clear();
             Console.WriteLine($"Opção invalida {ex.Message}\n");
-            ExibirMenu(conta);
+            ExibirMenu(usuario);
         }
         
     }

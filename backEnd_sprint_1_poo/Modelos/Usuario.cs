@@ -8,6 +8,8 @@ internal class Usuario
 {
     public string Nome { get; }
 
+    public List<ContaBancaria> Contas = new List<ContaBancaria>();
+
     public Usuario(string nome){
         this.Nome = nome;
     }

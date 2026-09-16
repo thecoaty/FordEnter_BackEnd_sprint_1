@@ -5,12 +5,12 @@ using System.Text;
 
 namespace backEnd_sprint_1_poo.Menus;
 
-internal class AcessarContaCorrente : Menu
+internal class AcessarConta : Menu
 {
     public override void Executar(ContaBancaria conta)
     {
                 
-    ExibirOpcoes(conta);
+        ExibirOpcoes(conta);
         try
         {
             do
@@ -42,8 +42,14 @@ internal class AcessarContaCorrente : Menu
                         ExibirOpcoes(conta);
                         break;
                     case 4:
+                        conta.Emprestimo();
+                        Console.Clear();
                         ExibirOpcoes(conta);
                         break;
+
+                    case 0:
+                        ExibirMenu(conta.Titular);
+                        return;
 
                     case -1:
                         return;
@@ -70,11 +76,12 @@ internal class AcessarContaCorrente : Menu
         var TitularDaConta = conta.Titular.Nome;
         var saldoDaConta = conta.Saldo;
 
-        ExibirTituloDaOpcao($"Opções da Conta corrente. {TitularDaConta}, digite a opção desejada:");
+        ExibirTituloDaOpcao($"Opções da {conta.TipoDeConta}. {TitularDaConta}, digite a opção desejada:");
         Console.WriteLine("1. Consultar Saldo");
         Console.WriteLine("2. Deposito");
         Console.WriteLine("3. Saque");
         Console.WriteLine("4. Consultar Emprestimos");
+        Console.WriteLine("0. Voltar");
         Console.WriteLine("-1. Sair\n");
         Console.Write("Digite a sua opção: ");
     }

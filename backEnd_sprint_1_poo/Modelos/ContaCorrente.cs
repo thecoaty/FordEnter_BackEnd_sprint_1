@@ -6,8 +6,10 @@ namespace backEnd_sprint_1_poo.Modelos;
 
 internal class ContaCorrente : ContaBancaria
 {
-    public ContaCorrente(Usuario titular, int numeroDaConta):base(numeroDaConta, titular){ 
-    
+    public ContaCorrente(Usuario titular, int numeroDaConta):base(numeroDaConta, titular)
+    {
+        titular.Contas.Add(this);
+        TipoDeConta = TipoDeConta.ContaCorrente;
     }
 
     public override void Saque(double valor)
