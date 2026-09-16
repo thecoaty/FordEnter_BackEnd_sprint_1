@@ -80,9 +80,10 @@ internal class Menu
                 }
             } while (true);
         }
-        catch (Exception ex) {
+        catch {
             Console.Clear();
-            Console.WriteLine($"Opção invalida {ex.Message}\n");
+            Console.WriteLine($"Caractere invalido, o sistema aceita apenas números... \n");
+            Thread.Sleep(2000);
             ExibirMenu(usuario);
         }
         
