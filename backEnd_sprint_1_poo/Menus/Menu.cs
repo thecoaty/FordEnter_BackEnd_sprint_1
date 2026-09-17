@@ -21,10 +21,32 @@ internal class Menu
 
     }
 
+    public Boolean ValidarCaracteres(string nomeDoUsuario){
+
+        string[] caractereInvalido = ["\u0022", "\u005C", "'","-", "_", "=", "+", "{", "}", "[", "]", ",", ".", "*", "&", "¨", "%", "$", "#", "@", "!", "|","/", "?", ":", ";", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ];
+
+        for (int i = 0; i != nomeDoUsuario.Length; i++)
+        {
+            //Console.WriteLine(nomeDoUsuario[i]);
+            foreach (var caractere in caractereInvalido)
+            {
+                if (nomeDoUsuario[i] == char.Parse(caractere))
+                {
+                    Console.WriteLine("Caractere Invalido");
+                    return false;
+                }
+
+            }
+        }
+                return true;
+    }
+
     public void CriarUsuario(){
         Console.Write("Olá usuario qual o seu nome? ");
         string usuario = Console.ReadLine()!;
-        if(usuario.Length > 0){
+        
+        if (!(string.IsNullOrWhiteSpace(usuario)) && ValidarCaracteres(usuario))
+        {
             var numeroAleatorio = new Random();
             int numeroDaConta = numeroAleatorio.Next(1, 100);
             var novoUsuario = new Usuario(usuario);
@@ -36,7 +58,7 @@ internal class Menu
             ExibirMenu(novoUsuario);
         }
         else{
-            Console.WriteLine("Precisa ter um nome de usuario válido.");
+            Console.WriteLine("Precisa ter um nome de usuario válido e sem caracteres especiais.");
             Thread.Sleep(2000);
 
             Console.Clear();
