@@ -20,12 +20,14 @@ internal class AcessarConta : Menu
                 switch (opcao)
                 {
                     case 1:
+                        ExibirTituloDaOpcao("Exibir saldo.");
                         conta.exibirSaldo();
                         Thread.Sleep(3000);
                         ExibirOpcoes(conta);
                         break;
                     case 2:
-                        Console.Write("Digite o valor para deposito: ");
+                        ExibirTituloDaOpcao("Realizar deposito.");
+                        Console.Write("Digite o valor para deposito, ou tecle 0 para voltar: ");
                         string valorDeposito = Console.ReadLine()!;
                         double valorIntDeposito = double.Parse(valorDeposito);
                         conta.Depositar(valorIntDeposito);
@@ -33,8 +35,9 @@ internal class AcessarConta : Menu
                         ExibirOpcoes(conta);
                         break;
                     case 3:
+                        ExibirTituloDaOpcao("Realizar saque.");
                         conta.exibirSaldo();
-                        Console.Write($"\nDigite o valor para sacar: ");
+                        Console.Write($"\nDigite o valor para sacar, ou tecle 0 para voltar: ");
                         string valorSaque = Console.ReadLine()!;
                         double valorIntSaque = double.Parse(valorSaque);
                         conta.Saque(valorIntSaque);
@@ -42,6 +45,7 @@ internal class AcessarConta : Menu
                         ExibirOpcoes(conta);
                         break;
                     case 4:
+                        ExibirTituloDaOpcao("Consulta de Emprestimo");
                         conta.Emprestimo();
                         Console.Clear();
                         ExibirOpcoes(conta);

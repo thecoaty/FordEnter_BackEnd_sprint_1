@@ -12,6 +12,7 @@ internal class Menu
         int quantidadeDeLetras = titulo.Length;
 
         string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
+        Console.Clear();
         Console.WriteLine(asteriscos);
         Console.WriteLine(titulo);
         Console.WriteLine(asteriscos + "\n");
@@ -32,7 +33,7 @@ internal class Menu
             {
                 if (nomeDoUsuario[i] == char.Parse(caractere))
                 {
-                    Console.WriteLine("Caractere Invalido");
+                    Console.WriteLine($"Caractere invalído {nomeDoUsuario[i]}");
                     return false;
                 }
 
@@ -58,7 +59,7 @@ internal class Menu
             ExibirMenu(novoUsuario);
         }
         else{
-            Console.WriteLine("Precisa ter um nome de usuario válido e sem caracteres especiais.");
+            Console.WriteLine("\nPrecisa ter um nome de usuario válido e sem caracteres especiais.");
             Thread.Sleep(2000);
 
             Console.Clear();
@@ -75,7 +76,7 @@ internal class Menu
         Console.WriteLine("1. Acessar sua Conta Corrente");
         Console.WriteLine("2. Acessar sua Conta Poupanca");
         Console.WriteLine("3. Acessar sua Conta Empresarial");
-        Console.WriteLine("-1. Sair");
+        Console.WriteLine("-1. Sair\n");
         Console.Write("Digite a sua opção: ");
         try
         {

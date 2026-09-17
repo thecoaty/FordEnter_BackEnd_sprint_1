@@ -18,9 +18,23 @@ internal class ContaPoupanca : ContaBancaria
 
     public override void Depositar(double valor)
     {
-        Saldo += valor + (valor * Rendimento);
-        Console.WriteLine($"Deposito de {valor} realizado com sucesso com Rendimento da Poupanca de 1%");
-        exibirSaldo();
+        if (valor == 0)
+        {
+            Console.WriteLine("Voltando ao menu anterior");
+            Thread.Sleep(2000);
+        }
+        else if (valor < 0)
+        {
+            Console.WriteLine("Valor inválido, voltando ao menu anterior");
+        }
+        else
+        {
+            Saldo += valor + (valor * Rendimento);
+            Console.WriteLine($"Deposito de {valor:F2} realizado...");
+            Console.WriteLine($"Rendimento da Poupanca de 1% aplicado\n");
+            Console.WriteLine($"\nDeposito de {valor:F2} realizado com sucesso!\n");
+            exibirSaldo();
+        }
     }
 
 }

@@ -21,24 +21,41 @@ internal abstract class ContaBancaria
     }
 
     public void exibirSaldo(){
-        Console.WriteLine($"Saldo da sua {TipoDeConta} atual de {Saldo}");
+        Console.WriteLine($"Saldo da sua {TipoDeConta} atual de {Saldo:F2}");
     }
 
     public virtual void Depositar(double valor){
-        Saldo += valor;
-        Console.WriteLine($"Deposito de {valor} realizado com sucesso!");
-        exibirSaldo();
+        if(valor == 0){
+            Console.WriteLine("Voltando ao menu anterior");
+            Thread.Sleep(2000);
+        }
+        else if(valor < 0){
+            Console.WriteLine("Valor inválido, voltando ao menu anterior");
+        }
+        else{
+            Saldo += valor;
+            Console.WriteLine($"\nDeposito de {valor:F2} realizado com sucesso!\n");
+            exibirSaldo();
+        }
     }
 
     public virtual void Saque(double valor)
     {
-        if(valor > Saldo){
-            Console.WriteLine("Saldo insuficiente");
+        if(valor == 0 ){
+            Console.WriteLine("Voltando ao menu anterior");
+            Thread.Sleep(2000);
+        }
+        else if (valor < 0)
+        {
+            Console.WriteLine("Valor inválido, voltando ao menu anterior");
+        }
+        else if(valor > Saldo){
+            Console.WriteLine("\nSaldo insuficiente");
             exibirSaldo();
         }
         else{
         Saldo -= valor;
-            Console.WriteLine($"Saque de {valor} realizado!");
+            Console.WriteLine($"\nSaque de {valor:F2} realizado!");
             exibirSaldo();
         }
     }
@@ -54,10 +71,10 @@ internal abstract class ContaBancaria
                 Console.Clear();
                 Console.WriteLine($"Emprestimo disponivel de {EmprestimoBase}\n");
 
-                Console.Write($"Qual valor deseja pegar emprestado? (Ou tecle 0 para cancelar): ");
+                Console.Write($"\nQual valor deseja pegar emprestado? (Ou tecle 0 para cancelar): ");
                 var valorSelecionado = Console.ReadLine();
 
-                double valorNumerico = double.Parse(valorSelecionado);
+                double valorNumerico = double.Parse(valorSelecionado!);
                 valorControle = valorNumerico;
 
                 if (valorNumerico == 0)
@@ -69,7 +86,7 @@ internal abstract class ContaBancaria
                 {
                     if (valorNumerico > 0 && valorNumerico <= EmprestimoBase)
                     {
-                        Console.WriteLine($"Emprestimo de {valorNumerico} realizado com sucesso e já está disponivel em seu saldo!");
+                        Console.WriteLine($"\nEmprestimo de {valorNumerico:F2} realizado com sucesso e já está disponivel em seu saldo!");
                         Saldo += valorNumerico;
                         EmprestimoBase -= valorNumerico;
                         Thread.Sleep(3000);
@@ -78,8 +95,8 @@ internal abstract class ContaBancaria
                     }
                     else
                     {
-                        Console.WriteLine("Valor Invalido!");
-                        Thread.Sleep(3000);
+                        Console.WriteLine("\nValor Invalido!");
+                        Thread.Sleep(2000);
                         Console.Clear();
 
                     }
@@ -89,8 +106,8 @@ internal abstract class ContaBancaria
 
         }
         catch{
-            Console.WriteLine("Insira um valor válido!");
-            Thread.Sleep(3000);
+            Console.WriteLine("\nInsira um valor válido!");
+            Thread.Sleep(2000);
             Console.Clear();
             Emprestimo();
         }
