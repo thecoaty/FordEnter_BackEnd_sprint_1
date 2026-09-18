@@ -10,7 +10,7 @@ internal class ContaEmpresarial : ContaBancaria
     {
 
         titular.Contas.Add(this);
-        TipoDeConta = TipoDeConta.ContaEmpresarial;
+        TipoDeConta = TipoDeConta.Empresarial;
         EmprestimoBase = 5000.00;
     }
 }

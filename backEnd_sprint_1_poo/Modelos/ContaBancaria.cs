@@ -21,7 +21,7 @@ internal abstract class ContaBancaria
     }
 
     public void exibirSaldo(){
-        Console.WriteLine($"Saldo da sua {TipoDeConta} atual de {Saldo:F2}");
+        Console.WriteLine($"Saldo da sua Conta {TipoDeConta} atual de {Saldo:F2}");
     }
 
     public virtual void Depositar(double valor){

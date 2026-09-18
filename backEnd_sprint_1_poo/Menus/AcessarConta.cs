@@ -80,7 +80,7 @@ internal class AcessarConta : Menu
         var TitularDaConta = conta.Titular.Nome;
         var saldoDaConta = conta.Saldo;
 
-        ExibirTituloDaOpcao($"Opções da {conta.TipoDeConta}. {TitularDaConta}, digite a opção desejada:");
+        ExibirTituloDaOpcao($"Opções da Conta {conta.TipoDeConta}. {TitularDaConta}, digite a opção desejada:");
         Console.WriteLine("1. Consultar Saldo");
         Console.WriteLine("2. Deposito");
         Console.WriteLine("3. Saque");

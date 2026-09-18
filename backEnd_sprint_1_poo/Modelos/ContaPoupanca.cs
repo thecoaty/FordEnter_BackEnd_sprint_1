@@ -12,7 +12,7 @@ internal class ContaPoupanca : ContaBancaria, IRendimento
     public ContaPoupanca(Usuario titular, int numeroDaConta) : base(numeroDaConta, titular)
     {
         titular.Contas.Add(this);
-        TipoDeConta = TipoDeConta.ContaPoupanca;
+        TipoDeConta = TipoDeConta.Poupanca;
 
         Rendimento = 0.01;
     }

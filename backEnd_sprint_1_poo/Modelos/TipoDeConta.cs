@@ -6,8 +6,8 @@ namespace backEnd_sprint_1_poo.Modelos
 {
     internal enum TipoDeConta
     {
-        ContaPoupanca,
-        ContaCorrente,
-        ContaEmpresarial
+        Poupanca,
+        Corrente,
+        Empresarial
     }
 }

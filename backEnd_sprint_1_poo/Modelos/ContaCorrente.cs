@@ -11,7 +11,7 @@ internal class ContaCorrente : ContaBancaria, ITaxa
     public ContaCorrente(Usuario titular, int numeroDaConta):base(numeroDaConta, titular)
     {
         titular.Contas.Add(this);
-        TipoDeConta = TipoDeConta.ContaCorrente;
+        TipoDeConta = TipoDeConta.Corrente;
     }
 
     public double CalcularTaxa( double valorSaque)
