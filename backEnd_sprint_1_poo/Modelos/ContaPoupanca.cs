@@ -1,10 +1,11 @@
-﻿using System;
+﻿using backEnd_sprint_1_poo.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace backEnd_sprint_1_poo.Modelos;
 
-internal class ContaPoupanca : ContaBancaria
+internal class ContaPoupanca : ContaBancaria, IRendimento
 {
 
     public double Rendimento { get; }
@@ -14,6 +15,10 @@ internal class ContaPoupanca : ContaBancaria
         TipoDeConta = TipoDeConta.ContaPoupanca;
 
         Rendimento = 0.01;
+    }
+
+    public double CalcularRendimento(double valor){
+        return valor * Rendimento;
     }
 
     public override void Depositar(double valor)
@@ -29,10 +34,9 @@ internal class ContaPoupanca : ContaBancaria
         }
         else
         {
-            Saldo += valor + (valor * Rendimento);
+            Saldo += CalcularRendimento(valor);
             Console.WriteLine($"Deposito de {valor:F2} realizado...");
             Console.WriteLine($"Rendimento da Poupanca de 1% aplicado\n");
-            Console.WriteLine($"\nDeposito de {valor:F2} realizado com sucesso!\n");
             exibirSaldo();
         }
     }
