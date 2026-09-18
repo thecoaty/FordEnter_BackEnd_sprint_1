@@ -69,7 +69,7 @@ internal abstract class ContaBancaria
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Emprestimo disponivel de {EmprestimoBase}\n");
+                Console.WriteLine($"Emprestimo disponivel de {EmprestimoBase:F2}\n");
 
                 Console.Write($"\nQual valor deseja pegar emprestado? (Ou tecle 0 para cancelar): ");
                 var valorSelecionado = Console.ReadLine();

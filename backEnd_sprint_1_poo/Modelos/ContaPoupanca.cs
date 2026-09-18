@@ -34,7 +34,7 @@ internal class ContaPoupanca : ContaBancaria, IRendimento
         }
         else
         {
-            Saldo += CalcularRendimento(valor);
+            Saldo += valor + CalcularRendimento(valor);
             Console.WriteLine($"Deposito de {valor:F2} realizado...");
             Console.WriteLine($"Rendimento da Poupanca de 1% aplicado\n");
             exibirSaldo();

@@ -22,9 +22,9 @@ internal class ContaCorrente : ContaBancaria, ITaxa
     public override void Saque(double valor)
     { 
         double Taixa = CalcularTaxa(valor);
-        if(Taixa + valor <= Saldo){
+        if(valor > 0 && Taixa + valor <= Saldo){
             Console.WriteLine($"Saque de {valor:F2} + Taxa de saque da conta corrente de 3% aplicado");
-        } else if(valor <= Saldo){
+        } else if(valor>0 && valor <= Saldo){
             Console.WriteLine($"\nSaque de {valor:F2} indisponível, considerar a taxa de 3%  - Valor de saque com taxa = {Taixa + valor:F2}\n");
             Thread.Sleep(2000);
         }
